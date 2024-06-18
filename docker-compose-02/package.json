@@ -1,0 +1,19 @@
+{
+  "name": "docker-compose-02",
+  "version": "1.0.0",
+  "description": "A Node.js app with Express, Sequelize, and SQLite",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "seed": "node src/seedData.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "express": "^4.17.1",
+    "sequelize": "^6.6.5",
+    "sqlite3": "^5.0.2"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
