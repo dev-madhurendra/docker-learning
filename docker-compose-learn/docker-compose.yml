@@ -1,0 +1,58 @@
+version: '3.7'
+
+services:
+    apigateway:
+        image: dev-madhurendra/k-api-gateway:latest
+        command: sh -c "uvicorn main:app --reload --host 0.0.0.0"
+        build:
+            context: ./apigateway
+            dockerfile: Dockerfile
+        env_file:
+            - ./apigateway/.env
+        ports:
+          - 8001:8000
+        depends_on:
+          - user_service
+          - tool_integration_service
+          - employee_security_service
+        volumes:
+          - ./apigateway:/app
+
+    user_service:
+        image: dev-madhurendra/k-user_service:latest
+        command: sh -c "uvicorn main:app --reload --host 0.0.0.0"
+        build:
+            context: ./user_service
+            dockerfile: Dockerfile
+        env_file:
+            - ./user_service/.env
+        ports:
+          - 8002:8000
+        volumes:
+          - ./user_service:/app
+
+    tool_integration_service:
+        image: dev-madhurendra/k-tool_integration_service:latest
+        command: sh -c "uvicorn main:app --reload --host 0.0.0.0"
+        build:
+            context: ./tool_integration_service
+            dockerfile: Dockerfile
+        env_file:
+            - ./tool_integration_service/.env
+        ports:
+          - 8003:8000
+        volumes:
+          - ./tool_integration_service:/app
+    
+    employee_security_service:
+        image: dev-madhurendra/k-employee_security_service:latest
+        command: sh -c "uvicorn main:app --reload --host 0.0.0.0"
+        build:
+            context: ./employee_security_service
+            dockerfile: Dockerfile
+        env_file:
+            - ./employee_security_service/.env
+        ports:
+          - 8004:8000
+        volumes:
+          - ./employee_security_service:/app

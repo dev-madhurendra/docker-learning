@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+pydantic_settings
+
+aiohttp
